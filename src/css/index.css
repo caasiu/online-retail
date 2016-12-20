@@ -1,0 +1,24 @@
+.navbar-form-center {
+    display: block;
+    text-align: center;
+}
+
+
+.full-star {
+    color: #fde16d;
+}
+
+.half-star {
+    position:relative;
+    color: #fde16d;
+}
+
+.half-star:after {
+    content:'';
+    position:absolute;
+    z-index:1;
+    background:white;
+    height: 100%;
+    left: 50%;
+    width: 50%;
+}

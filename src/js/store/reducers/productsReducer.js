@@ -12,6 +12,8 @@ export default (state = [], action) => {
                 ...state,
                 action.productsList
             ];
+        case "FETCH_PRODUCTS_FULFILLED":
+            return action.payload;
         default:
             return state;
     }

@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import showDetail from "../../action/showDetail";
 
+import Loading from "./loading";
 import ProductDetail from "./productDetail";
 import NoProduct from "./noProduct";
 
@@ -12,8 +13,15 @@ class Detail extends React.Component{
     }
 
     render(){
-        var DetailPage = this.props.product.length > 0 ? ProductDetail : NoProduct;
-        return ( <DetailPage /> );
+        if (this.props.product.length > 0){
+            if (this.props.product[0].fetching === true){
+                return (<Loading />);
+            }else if(this.props.product[0].fetched === true){
+                return (<ProductDetail />);
+            }
+        }else{
+            return (<NoProduct />);
+        }
     }
 }
 

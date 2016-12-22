@@ -1,8 +1,9 @@
-var json = require("json-loader!./data/products.json");
+import "whatwg-fetch";
 
 export default () => {
     return ({
-        type: "RECEIVE_PRODUCTS",
-        productsList: json
+        type: "FETCH_PRODUCTS",
+        payload: fetch("http://localhost:3000/api/products")
+                     .then((response) => response.json())
     });
 }

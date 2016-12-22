@@ -1,15 +1,12 @@
 
 export default (state = [], action) => {
     switch (action.type){
-        case "ADD_TO_CART":
+        case "ADD_TO_CART_FULFILLED":
             return [
                 ...state,
                 {
-                    slug : action.slug,
-                    label: action.label,
-                    price: action.price,
-                    stock: action.stock,
-                    quantity: action.quantity
+                    ...action.payload[0],
+                    quantity: 1
                 }
             ];
         case "CHANGE_QUANTITY":

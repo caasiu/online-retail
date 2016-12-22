@@ -1,4 +1,6 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import promise from "redux-promise-middleware";
+import logger from "redux-logger";
 
 import productsReducer from "./reducers/productsReducer";
 import detailReducer from "./reducers/detailReducer";
@@ -10,4 +12,6 @@ const reducer = combineReducers({
     cart: cartReducer
 });
 
-export default createStore(reducer);
+const middleware = applyMiddleware( promise(), logger() );
+
+export default createStore(reducer, middleware);

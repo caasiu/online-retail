@@ -1,12 +1,4 @@
-var json = require("json-loader!./data/products.json");
-
-const filterProduct = (products, slug) => {
-    var temp = products.filter((product) => {
-        return product.slug === slug;
-    });
-
-    return temp[0];
-}
+import "whatwg-fetch";
 
 export default (cartList, slug) => {
     let addProduct = true;
@@ -18,16 +10,12 @@ export default (cartList, slug) => {
     });
 
     if(addProduct){
-        var result = filterProduct(json, slug)
-        return {
+        return ({
             type: "ADD_TO_CART",
-            slug: result.slug,
-            label: result.label,
-            price: result.price,
-            stock: result.stock,
-            quantity: 1
-        };
+            payload: fetch("http://localhost:3000/api/product/" + slug)
+                .then((response) => response.json())
+        });
     }
 
-    return {type: null};
+    return {type: "PRODUCT_IN_CART"};
 }

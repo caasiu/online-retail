@@ -31,7 +31,15 @@ class ProductDetail extends React.Component{
                     <a class={"btn " + btnClass} 
                        role="button" 
                        onClick={() => {
-                            this.props.handleAddToCart(this.props.cartList, this.props.product.slug);
+                           this.props.handleAddToCart(
+                               this.props.cartList, 
+                               {
+                                   slug: this.props.product.slug,
+                                   label: this.props.product.label,
+                                   price: this.props.product.price,
+                                   stock: this.props.product.stock
+                               }
+                           );
                        }}
                     >
                             {btnString}
@@ -51,8 +59,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleAddToCart: (cartList, slug) => {
-            dispatch(addToCart(cartList, slug));
+        handleAddToCart: (cartList, args) => {
+            dispatch(addToCart(cartList, args));
         }
     };
 };

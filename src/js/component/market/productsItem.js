@@ -22,7 +22,15 @@ class ProductsItem extends React.Component{
                     <a class={"btn btn-block " + btnClass} 
                        role="button"
                        onClick={() => {
-                           this.props.handleAddToCart(this.props.cartList, this.props.slug);
+                           this.props.handleAddToCart(
+                               this.props.cartList, 
+                               {
+                                   slug: this.props.slug,
+                                   label: this.props.label,
+                                   price: this.props.price,
+                                   stock: this.props.stock
+                               }
+                           );
                        }}
                     >
                         {btnString}
@@ -39,8 +47,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleAddToCart: (cartList, slug) => {
-            dispatch(addToCart(cartList, slug));
+        handleAddToCart: (cartList, args) => {
+            dispatch(addToCart(cartList, args));
         }
     };
 };

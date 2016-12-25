@@ -1,14 +1,14 @@
 
 export default (state = [], action) => {
     switch (action.type){
-        case "ADD_TO_CART_FULFILLED":
+        case "ADD_TO_CART":
             return [
                 ...state,
                 {
-                    ...action.payload[0],
+                    ...action.data,
                     quantity: 1
                 }
-            ];
+            ]
         case "CHANGE_QUANTITY":
             return state.map((product) => {
                 if (product.slug !== action.slug){

@@ -9,6 +9,9 @@ export default (state = [], action) => {
                 fetched: false
             }];
         case "SHOW_DETAIL_FULFILLED":
+            if (action.payload.length === 0)
+                return [];
+
             return [{
                 ...action.payload[0],
                 fetching: false,

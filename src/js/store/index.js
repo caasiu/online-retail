@@ -5,11 +5,13 @@ import logger from "redux-logger";
 import productsReducer from "./reducers/productsReducer";
 import detailReducer from "./reducers/detailReducer";
 import cartReducer from "./reducers/cartReducer";
+import authReducer from "./reducers/authReducer";
 
 const reducer = combineReducers({
     products: productsReducer,
     detail: detailReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    auth: authReducer,
 });
 
 const middleware = applyMiddleware( promise(), logger() );

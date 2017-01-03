@@ -3,6 +3,8 @@ const path = require('path');
 const app = express();
 const crypto = require('crypto');
 const sqlite3 = require('sqlite3').verbose();
+const jwt = require('jsonwebtoken');
+const expressJWT = require('express-jwt');
 
 app.use('/', express.static(path.join(__dirname, 'src')));
 //app.use((req, res) => res.sendFile(`${__dirname}/src/index.html`));
@@ -68,5 +70,30 @@ app.get('/api/products', (req, res) => {
         res.send();
     }
 })
+
+app.post('/api/userid/:id/password/:pwd', (req, res) => {
+    if(req.params.id === '348689' && req.params.pwd === 'onlineretail'){
+        var token = jwt.sign({
+            userid: req.params.id,
+            name: 'caasiu',
+        }, 'caasiu online-retail demo');
+        res.send(token);
+    }else{
+        res.sendStatus(401);
+    }
+})
+
+app.get('/api/account',
+    expressJWT({secret: 'caasiu online-retail demo'}),
+    (req, res) => {
+        if(!req.user) return res.sendStatus(401);
+        res.json({
+            userid: req.user.userid,
+            name: req.user.name,
+            address: 'NO 3, Street 7',
+            balance: 200
+        });
+    }
+)
 
 app.listen(3000, () => console.log('express port is on: 3000'));

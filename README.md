@@ -10,15 +10,15 @@ npm install
 
 ## usage
 * using local data
-  ```
+```
   git checkout v1.0
   npm run dev
   http://loaclhost:8080
 
-  ```
-* using express and postgresql
-  ```
-  git checkout v2.0
+```
+* using express and sqlite3
+```
+  git checkout v2.3
   npm run demo
   http://localhost:3000
-  ```
+```

@@ -16,9 +16,9 @@ npm install
   http://loaclhost:8080
 
 ```
-* using express and sqlite3
+* using restful endpoint
 ```
-  git checkout v2.3
+  git checkout v2.4
   npm run demo
   http://localhost:3000
 ```

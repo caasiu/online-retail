@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --hot --history-api-fallback",
     "pro": "NODE_ENV=production webpack",
-    "demo": "webpack && node express.js"
+    "demo": "node server.js"
   },
   "repository": {
     "type": "git",
